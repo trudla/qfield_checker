@@ -1,0 +1,29 @@
+[project]
+name = "qfield-checker"
+version = "0.1.0"
+description = "Middleware for QField and Postgres DB that checks data validdity."
+authors = [
+    {name = "trudla",email = "38201788+trudla@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "qfieldcloud-sdk (>=0.15.0,<0.16.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)",
+    "click (>=8.3.3,<9.0.0)",
+    "pandas (>=3.0.3,<4.0.0)",
+    "numpy (>=2.4.4,<3.0.0)"
+]
+
+[dependency-groups]
+dev = [
+    "notebook (>=7.5.5,<8.0.0)",
+    "flake8 (>=7.3.0,<8.0.0)",
+    "black (>=26.3.1,<27.0.0)",
+    "pytest (>=9.0.3,<10.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
