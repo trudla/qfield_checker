@@ -48,6 +48,8 @@ def validate_duplicates(df_s: pd.DataFrame) -> pd.DataFrame:
 
     apply_error(df_s, mask_duplicate_tag, "Duplicity ERROR: Tag!")
 
+    return df_s
+
 
 def validate_dbh(df_s: pd.DataFrame) -> pd.DataFrame:
     mask_dbh_increase = (
@@ -59,7 +61,7 @@ def validate_dbh(df_s: pd.DataFrame) -> pd.DataFrame:
     mask_dbh_decrease = (
         df_s["DBH"].notna()
         & df_s["DBH_OLD"].notna()
-        & ((df_s["DBH_OLD"] - df_s["DBH"]) >= sdf_s["DBH_OLD"] * 0.1)
+        & ((df_s["DBH_OLD"] - df_s["DBH"]) >= df_s["DBH_OLD"] * 0.1)
     )
 
     mask_dbh_old_positive = df_s["DBH_OLD"] > 0
@@ -69,6 +71,8 @@ def validate_dbh(df_s: pd.DataFrame) -> pd.DataFrame:
     apply_error(
         df_s, mask_dbh_decrease & mask_dbh_old_positive, "DBH decrease over 10%!"
     )
+
+    return df_s
 
 
 def validate_status_rules(df_s: pd.DataFrame) -> pd.DataFrame:
@@ -114,11 +118,15 @@ def validate_status_rules(df_s: pd.DataFrame) -> pd.DataFrame:
 
     apply_error(df_s, mask_DP & mask_decay_stump, "Decay over >= 5: Stump gone!")
 
+    return df_s
+
 
 def validate_required_fields(df_s: pd.DataFrame) -> pd.DataFrame:
     apply_error(df_s, df_s["STATUS"].isna(), "Missing STATUS!")
 
     apply_error(df_s, df_s["SPECIES"].isna(), "Missing SPECIES!")
+
+    return df_s
 
 
 def validate_missing_lying_tree(df_s: pd.DataFrame, df_l: pd.DataFrame) -> pd.DataFrame:
@@ -135,6 +143,8 @@ def validate_missing_lying_tree(df_s: pd.DataFrame, df_l: pd.DataFrame) -> pd.Da
     )
 
     apply_error(df_s, mask_missing_line, "Missing lying tree!")
+
+    return df_s
 
 
 def run_l_checks(df_l: pd.DataFrame, df_s: pd.DataFrame) -> pd.DataFrame:
