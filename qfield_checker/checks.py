@@ -36,11 +36,11 @@ def apply_error(df: pd.DataFrame, mask: pd.Series, message: str) -> None:
 
 
 def validate_duplicates(df_s: pd.DataFrame) -> pd.DataFrame:
-    mask_duplicate_id = df_s["TREE_ID"].notna() & df_S.duplicated(
+    mask_duplicate_id = df_s["TREE_ID"].notna() & df_s.duplicated(
         subset=["TREE_ID", "STEM_ID"], keep=False
     )
 
-    mask_duplicate_tag = df_s["TAG"].notna() & df_S.duplicated(
+    mask_duplicate_tag = df_s["TAG"].notna() & df_.duplicated(
         subset=["TAG"], keep=False
     )
 
